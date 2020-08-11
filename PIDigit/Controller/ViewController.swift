@@ -17,6 +17,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.inputNumber.delegate = self
+        
+        resultLabel.adjustsFontSizeToFitWidth = true
+        resultLabel.minimumScaleFactor = 0.3
+        resultLabel.lineBreakMode = .byWordWrapping
+        resultLabel.numberOfLines = 3
         // Do any additional setup after loading the view.
     }
 
@@ -24,8 +29,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let pi = String(Double.pi)
         var stringResult: String
         
-        stringResult = String(pi.prefix(Int(inputNumber.text!)!+2))
-        resultLabel.text = stringResult
+        if let text = inputNumber.text, text.isEmpty == false {
+           // TextField is not empty here
+            
+            stringResult = String(pi.prefix(Int(text)!+2))
+            resultLabel.text = stringResult
+        } else {
+           // TextField is Empty
+            
+            resultLabel.text = "Text field is empty"
+        }
     }
     
     //MARK: UITextField Methods
@@ -34,8 +47,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let allowedCharacters = CharacterSet.decimalDigits
         let characterSet = CharacterSet(charactersIn: string)
-        return allowedCharacters.isSuperset(of: characterSet)
         
+        return allowedCharacters.isSuperset(of: characterSet)
     }
 }
 
