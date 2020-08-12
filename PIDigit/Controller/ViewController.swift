@@ -37,7 +37,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         } else {
            // TextField is Empty
             
-            resultLabel.text = "Text field is empty"
+            resultLabel.text = "Text field is empty!"
         }
     }
     
